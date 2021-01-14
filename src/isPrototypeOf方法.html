@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>isPrototypeOf方法</title>
+    </head>
+    <body>
+        <a
+            href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf"
+            >isPrototypeOf</a
+        >检查一个对象是否存在于另一个对象的原型链上
+        <script>
+            class Person {}
+            class Person1 extends Person {}
+            class Cat {}
+
+            const p = new Person();
+            const p1 = new Person1();
+            const cat = new Cat();
+            console.log(Person.prototype.isPrototypeOf(p));
+            console.log(Person.isPrototypeOf(p));
+            console.log(Person.isPrototypeOf(p1));
+            console.log(Person.prototype.isPrototypeOf(p1));
+            console.log(Person.isPrototypeOf(cat));
+            console.log(Person.prototype.isPrototypeOf(cat));
+            console.log(Person.prototype);
+            console.log(Person1.prototype);
+            console.log(p.__proto__);
+            console.log(p1.__proto__);
+        </script>
+    </body>
+</html>

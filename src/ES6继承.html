@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>ES6继承</title>
+    </head>
+    <body>
+        <script>
+            class Person {
+                constructor(name) {
+                    this.name = name;
+                }
+                speak() {
+                    console.log(this.name);
+                }
+            }
+            //通过extends来实现继承
+            class Student extends Person {
+                constructor(name, age) {
+                    //通过super 调用父类构造函数
+                    super(name);
+                    this.age = age;
+                }
+                study() {
+                    console.log(this.age);
+                }
+            }
+
+            const person = new Person("zs");
+            person.speak();
+
+            const student = new Student("li", 15);
+            student.speak();
+            student.study();
+        </script>
+        <a
+            href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/extends"
+            >extends</a
+        >
+        <a
+            href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super"
+            >super</a
+        >
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>instanceof关键字</title>
+    </head>
+    <body>
+        <a
+            href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof"
+            >instanceof</a
+        >用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上
+        <script>
+            class Person {}
+            class Person1 extends Person {}
+            class Cat {}
+
+            const p = new Person();
+            const p1 = new Person1();
+            const cat = new Cat();
+            console.log(p instanceof Person);
+            console.log(p1 instanceof Person);
+            console.log(cat instanceof Person);
+            cat isprototypeof Person
+        </script>
+    </body>
+</html>

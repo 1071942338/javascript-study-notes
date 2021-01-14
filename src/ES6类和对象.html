@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>ES6类和对象</title>
+    </head>
+    <body>
+        <script>
+            <!--ES6之前-->
+            function Person(name) {
+                //实例属性
+                this.name = name;
+                //实例方法
+                this.speak = function () {
+                    console.log(this.name);
+                };
+                //静态属性
+                Person.age = 11;
+                //静态方法
+                Person.run = function () {
+                    console.log(this.age);
+                };
+            }
+            Person.prototype.say = function () {
+                console.log("say");
+            };
+            const person = new Person("zhangSan");
+            console.log(person);
+            person.speak();
+            Person.run();
+        </script>
+        <script>
+            <!--ES6之后-->
+            class Student {
+                constructor(name) {
+                    //实例属性必须定义在构造函数中
+                    this.name = name;
+                    //实例方法
+                    this.speak = function () {
+                        console.log(this.name);
+                    };
+                }
+                //实例方法
+                say2() {
+                    console.log("say2:", this.name);
+                }
+
+                // static height = 22;
+                //静态方法
+                static run() {
+                    console.log(Student.height);
+                }
+            }
+            //静态属性
+            Student.height = 22;
+
+            // Student.prototype.say = function () {
+            //     console.log("say");
+            // };
+            const student = new Student("lisi");
+            console.log(student);
+            student.speak();
+            Student.run();
+            student.say2();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>对象属性方法增删改查</title>
+    </head>
+    <body>
+        <div>
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete"
+                >delete</a
+            >用于删除对象的某个属性
+        </div>
+        <script>
+            class Person {}
+            const p = new Person();
+        </script>
+        <script>
+            <!--    增加-->
+            //增加属性
+            p.name = "zs";
+            p["age"] = 10;
+
+            //增加方法
+            p.speak = function () {
+                console.log(p.name);
+            };
+            p["study"] = function () {
+                console.log(p.age);
+            };
+            console.log(p.name);
+            console.log(p.age);
+        </script>
+        <script>
+            <!--    删除-->
+            delete p.name;
+            delete p.study;
+            console.log(p.name);
+            console.log(p.age);
+        </script>
+
+        <script>
+            <!--    修改-->
+            p.age = 20;
+            p["study"] = function () {
+                console.log(p.age + p.name);
+            };
+            console.log(p.name);
+            console.log(p.age);
+        </script>
+    </body>
+</html>

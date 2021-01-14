@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>ES6对象解构赋值</title>
+    </head>
+    <body>
+        <div>
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment"
+                >解构赋值 Destructuring assignment</a
+            >法是一种 Javascript
+            表达式。通过解构赋值,可以将属性/值从对象/数组中取出,赋值给其他变量。
+        </div>
+        <div>
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment"
+                >Spread syntax (...)可以在函数调用/数组构造时,
+                将数组表达式或者string在语法层面展开；还可以在构造字面量对象时,
+                将对象表达式按key-value的方式展开。</a
+            >法是一种 Javascript
+            表达式。通过解构赋值,可以将属性/值从对象/数组中取出,赋值给其他变量。
+        </div>
+
+        <script>
+            <!-- 基本用法-->
+            const obj = { name: "zs", age: 10, sex: "man" };
+            // //基本赋值
+            // const { name, age } = obj;
+            // console.log(name, age);
+
+            // //对象解构赋值根据key匹配，而非顺序
+            // const { age, name } = obj;
+            // console.log(name, age);
+
+            // //默认值为undefined
+            // const { age, name, height } = obj;
+            // console.log(name, age, height);
+
+            // //设置默认值
+            // const { age, name, height = 100 } = obj;
+            // console.log(name, age, height);
+
+            // //重命名且设置默认值
+            // const { age: age1, name: name1, height: height1 = 100 } = obj;
+            // console.log(name1, age1, height1);
+
+            //剩余参数
+            const { age, ...rest } = obj;
+            console.log(name, rest);
+        </script>
+        <script>
+            <!-- 应用场景-->
+            //简化函数参数传递
+            const data = { name1: "name1", name2: "name1", name3: "name1" };
+            function func1(name1, name2, name3) {
+                console.log(name1, name2, name3);
+            }
+
+            func1(data.name1, data.name2, data.name3);
+            function func2({ name1, name2, name3 }) {
+                console.log(name1, name2, name3);
+            }
+            func2(data);
+        </script>
+    </body>
+</html>

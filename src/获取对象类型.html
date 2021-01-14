@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>ES6-获取对象类型</title>
+    </head>
+    <body>
+        <script>
+            function Person(name) {
+                this.name = name;
+            }
+            class Person2 {
+                constructor(name) {
+                    this.name = name;
+                }
+            }
+        </script>
+        <script>
+            const obj1 = new Object();
+            const obj2 = new Array();
+            const obj3 = new Person();
+            const obj4 = new Person2();
+
+            console.log(typeof obj1);
+            console.log(typeof obj2);
+            console.log(typeof obj3);
+            console.log(typeof obj4);
+
+            console.log(obj2.constructor);
+            console.log(obj2.constructor.name);
+            console.log(obj3.constructor.name);
+            console.log(obj4.constructor.name);
+
+            function getType(obj) {
+                const type = typeof obj;
+                if (type === "object") {
+                    return obj.constructor.name;
+                } else {
+                    return type;
+                }
+            }
+
+            console.log(getType(obj1));
+            console.log(getType(obj2));
+            console.log(getType(obj3));
+            console.log(getType(obj4));
+            if (obj1 instanceof ) {
+
+            }
+        </script>
+    </body>
+</html>

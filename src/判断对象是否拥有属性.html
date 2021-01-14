@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>判断对象是否拥有属性</title>
+    </head>
+    <body>
+        <div>
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"
+                >hasOwnProperty</a
+            >指示对象自身属性中是否具有指定的属性
+        </div>
+        <div>
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in"
+            >
+                in</a
+            >如果指定的属性在指定的对象或其原型链中，则in 运算符返回true
+        </div>
+
+        <script>
+            class Person {
+                constructor(name) {
+                    this.name = name;
+                }
+            }
+
+            Person.prototype.age = 10;
+
+            const p = new Person("zs");
+
+            console.log("name" in p);
+            console.log(p.hasOwnProperty("name"));
+            console.log("age" in p);
+            console.log(p.hasOwnProperty("age"));
+        </script>
+    </body>
+</html>
