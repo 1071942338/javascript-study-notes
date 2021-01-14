@@ -74,15 +74,25 @@
                 for (let key in source) {
                     //获取值
                     const value = source[key];
+
                     //检测值是否为引用类型
                     if (value instanceof Object) {
                         //引用数据类型根据构造函数创建对象
-                        console.log("value.constructor:", value.constructor);
-                        const subTarget = new value.constructor();
-                        //对象赋值
-                        target[key] = subTarget;
-                        //递归调用给子对象赋值
-                        deepCopy(subTarget, value);
+                        console.log(
+                            "value.constructor:",
+                            value.constructor,
+                            value.constructor.name
+                        );
+                        if (value.constructor.name === "Function") {
+                            //函数类型直接赋值
+                            target[key] = value;
+                        } else {
+                            const subTarget = new value.constructor();
+                            //对象赋值
+                            target[key] = subTarget;
+                            //递归调用给子对象赋值
+                            deepCopy(subTarget, value);
+                        }
                     } else {
                         //基本数据类型直接赋值
                         target[key] = value;
