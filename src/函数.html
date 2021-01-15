@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>函数</title>
+    </head>
+    <body>
+        <script>
+            function func() {
+                console.log(this);
+                console.log(arguments);
+            }
+            function func2() {
+                console.log(this);
+                console.log(arguments);
+            }
+            func();
+
+            console.log(func);
+            console.log(func.constructor === Function);
+
+            console.log(Function);
+            console.log(Function.prototype);
+
+            const adder = new Function("a", "b", "return a + b");
+            const adder2 = new Function("a", "b", "return a + b");
+            console.log(adder === adder2);
+            console.log(func === func2);
+
+            const sum = new Function("a", "b", "return a + b");
+            console.log(sum(2, 6));
+
+            const sum2 = Function.prototype.constructor(
+                "a",
+                "b",
+                "return a + b"
+            );
+            console.log(sum2(2, 6));
+
+            const x = 10;
+            function createFunction1() {
+                const x = 20;
+                return new Function("return x;"); // 这里的 x 指向最上面全局作用域内的 x
+            }
+            function createFunction2() {
+                const x = 20;
+                function f() {
+                    return x; // 这里的 x 指向上方本地作用域内的 x
+                }
+                return f;
+            }
+            const f1 = createFunction1();
+            console.log(f1()); // 10
+            const f2 = createFunction2();
+            console.log(f2()); // 20
+        </script>
+    </body>
+</html>
+<script>
+    const x = 10;
+    function createFunction1() {
+        const x = 20;
+        return new Function("return x;"); // 这里的 x 指向最上面全局作用域内的 x
+    }
+    function createFunction2() {
+        const x = 20;
+        function f() {
+            return x; // 这里的 x 指向上方本地作用域内的 x
+        }
+        return f;
+    }
+    const f1 = createFunction1();
+    console.log(f1()); // 10
+    const f2 = createFunction2();
+    console.log(f2()); // 20
+</script>
