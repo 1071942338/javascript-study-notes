@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>创建新对象</title>
+    </head>
+    <body>
+        <script>
+            <!--Object构造函数-->
+            const obj1 = new Object();
+            obj1.name = "zs";
+            obj1.say = function () {
+                console.log("obj1:", this.name);
+            };
+            obj1.say();
+            console.log("obj1:", obj1);
+        </script>
+        <script>
+            <!--Object.create函数-->
+            // const obj2 = Object.create(obj1);
+            // const obj2 = Object.create(Object.prototype);
+            const obj2 = Object.create({});
+            obj2.name = "zs";
+            obj2.say = function () {
+                console.log("obj2:", this.name);
+            };
+            obj2.say();
+            console.log("obj2:", obj2);
+        </script>
+        <script>
+            <!--构造函数-->
+            function Person(name) {
+                this.name = name;
+                this.say = function () {
+                    console.log("obj3:", this.name);
+                };
+            }
+
+            const obj3 = new Person("zs");
+            obj3.name = "zs";
+            obj3.say = function () {
+                console.log("obj3:", this.name);
+            };
+            obj3.say();
+            console.log("obj3:", obj3);
+        </script>
+        <script>
+            <!--字面量-->
+            const obj4 = Object.create({});
+            obj4.name = "zs";
+            obj4.say = function () {
+                console.log("obj4:", this.name);
+            };
+            obj4.say();
+            console.log("obj4:", obj4);
+        </script>
+        <script>
+            <!--class-->
+            class People {
+                constructor(name) {
+                    this.name = name;
+                }
+                say() {
+                    console.log("obj5:", this.name);
+                }
+            }
+            const obj5 = new People("zs");
+            obj5.name = "zs";
+            obj5.say = function () {
+                console.log("obj5:", this.name);
+            };
+            obj5.say();
+            console.log("obj5:", obj5);
+        </script>
+    </body>
+</html>

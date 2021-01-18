@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>继承</title>
+    </head>
+    <body>
+        <script>
+            function People(name) {
+                this.name = name;
+            }
+            const people = new People("zs");
+            console.log("people:", people);
+            console.log("people.prototype:", people.prototype);
+
+            console.log("people.constructor:", people.constructor);
+            console.log(
+                "people.constructor.prototype:",
+                people.constructor.prototype,
+                people.constructor.prototype === Function.prototype
+            );
+
+            console.log(
+                "people:.__proto__",
+                people.__proto__,
+                people.__proto__ === people.constructor.prototype
+            );
+
+            console.log("People:", People);
+            console.log("People.constructor:", People.constructor);
+            console.log(
+                "People.constructor.prototype:",
+                People.constructor.prototype
+            );
+            console.log(
+                "People.prototype:",
+                People.prototype,
+                People.prototype === People.constructor.prototype
+            );
+
+            console.log(
+                "People.constructor.prototype.constructor:",
+                People.constructor.prototype.constructor
+            );
+
+            console.log(
+                "People.constructor.prototype.constructor.prototype:",
+                People.constructor.prototype.constructor.prototype ===
+                    Function.prototype
+            );
+            console.log("---------------------------");
+        </script>
+        <!--        <script>-->
+        <!--            class Parent {-->
+        <!--                constructor(name) {-->
+        <!--                    this.name = name;-->
+        <!--                }-->
+        <!--            }-->
+
+        <!--            class Child extends Parent {-->
+        <!--                constructor(name) {-->
+        <!--                    super(name);-->
+        <!--                }-->
+        <!--            }-->
+
+        <!--            const child = new Child("zs");-->
+        <!--            console.log("Parent:", Parent);-->
+        <!--            console.log("Parent.prototype:", Parent.prototype);-->
+        <!--            console.log(-->
+        <!--                "Parent.constructor.prototype:",-->
+        <!--                Parent.constructor.prototype-->
+        <!--            );-->
+
+        <!--            console.log("Parent.__proto__", Parent.__proto__);-->
+
+        <!--            console.log("Child:", Child);-->
+        <!--            console.log("Child.prototype:", Child.prototype);-->
+        <!--            console.log("Child.__proto__:", Child.__proto__);-->
+        <!--            console.log("child.__proto__:", child.__proto__);-->
+        <!--            console.log(-->
+        <!--                "Child.__proto__",-->
+        <!--                Child.__proto__,-->
+        <!--                child.__proto__ === Child.prototype,-->
+        <!--                Child.constructor.prototype === Child.prototype-->
+        <!--            );-->
+        <!--        </script>-->
+    </body>
+</html>
