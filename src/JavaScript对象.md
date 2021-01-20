@@ -17,7 +17,7 @@
 var myCar = new Object();
 myCar.make = "Ford";
 myCar.model = "Mustang";
-myCar.year = 1969; 
+myCar.year = 1969;
 
 myCar["make"] = "Ford";
 myCar["model"] = "Mustang";
@@ -28,58 +28,58 @@ myCar["year"] = 1969;
 
 ```javascript
     class Parent {
-        constructor(name) {
-            this.name = name;
-            this.height = name;
-        }
-        say() {}
+    constructor(name) {
+        this.name = name;
+        this.height = name;
     }
-    class Child extends Parent {
-        constructor(name, age) {
-            super(name);
-            this.age = age;
-        }
-        say() {}
+    say() {}
+}
+class Child extends Parent {
+    constructor(name, age) {
+        super(name);
+        this.age = age;
     }
-    Child.prototype.sex = "1";
-    const child = new Child("child", 10);
-    console.log(child);
+    say() {}
+}
+Child.prototype.sex = "1";
+const child = new Child("child", 10);
+console.log(child);
 ```
 
 ### 3.1 ES5 之前 getOwnPropertyNames
 
 ```javascript
    <!-- ES6之前 -->
-    function listAllProperties(o, isEnumerable = false) {
-        //获取所有属性，包含原型链
-        let objectToInspect;
-        let result = [];
-        for (
-            objectToInspect = o;
-            objectToInspect !== null;
-            objectToInspect = Object.getPrototypeOf(objectToInspect)
-        ) {
-            result = result.concat(Object.getOwnPropertyNames(objectToInspect));
-        }
-        //数组元素去重
-        const newRes = [];
-        result.forEach((item) => {
-            if (newRes.indexOf(item) === -1) {
-                if (isEnumerable === true) {
-                    //保留不可枚举属性
-                    newRes.push(item);
-                } else {
-                    //不保留不可枚举属性
-                    o.propertyIsEnumerable(item) && newRes.push(item);
-                }
-            }
-        });
-        return newRes;
+function listAllProperties(o, isEnumerable = false) {
+    //获取所有属性，包含原型链
+    let objectToInspect;
+    let result = [];
+    for (
+        objectToInspect = o;
+        objectToInspect !== null;
+        objectToInspect = Object.getPrototypeOf(objectToInspect)
+    ) {
+        result = result.concat(Object.getOwnPropertyNames(objectToInspect));
     }
-    console.log("ES5之前:", listAllProperties(child, true));
+    //数组元素去重
+    const newRes = [];
+    result.forEach((item) => {
+        if (newRes.indexOf(item) === -1) {
+            if (isEnumerable === true) {
+                //保留不可枚举属性
+                newRes.push(item);
+            } else {
+                //不保留不可枚举属性
+                o.propertyIsEnumerable(item) && newRes.push(item);
+            }
+        }
+    });
+    return newRes;
+}
+console.log("ES5之前:", listAllProperties(child, true));
     
     <!--//结果-->
-    <!--["name", "height", "age", "constructor", "say", "sex", "__defineGetter__", "__defineSetter__", "hasOwnProperty", "__lookupGetter__", "__lookupSetter__", "isPrototypeOf", "propertyIsEnumerable", "toString", "valueOf", "__proto__", "toLocaleString"]-->
+<!--["name", "height", "age", "constructor", "say", "sex", "__defineGetter__", "__defineSetter__", "hasOwnProperty", "__lookupGetter__", "__lookupSetter__", "isPrototypeOf", "propertyIsEnumerable", "toString", "valueOf", "__proto__", "toLocaleString"]-->
 ```
 
 ### 3.2 for...in
@@ -448,7 +448,8 @@ console.log(p.constructor.prototype === Object.getPrototypeOf(p))
         Function.constructor.prototype === Function.__proto__
     );
 ```
-
+- [代码链接-创建对象](https://github.com/hao-kuai/javascript-study-notes/blob/main/src/%E5%88%9B%E5%BB%BA%E6%96%B0%E5%AF%B9%E8%B1%A1.html)
+- [代码链接-继承](https://github.com/hao-kuai/javascript-study-notes/blob/main/src/%E7%BB%A7%E6%89%BF.html)
 
 >参考链接
 - [使用对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_Objects)
