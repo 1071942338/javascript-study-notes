@@ -6,83 +6,224 @@
     </head>
     <body>
         <script>
-            function People(name) {
+            console.log("--方式1-----------------");
+
+            //定义父类
+            function People1(name) {
+                //定义父类属性，每个实例对象值都一样，定义在对象上
                 this.name = name;
             }
-            const people = new People("zs");
-            console.log("people:", people);
-            console.log("people.prototype:", people.prototype);
+            //定义父类方法，每个实例对象执行方法一样，定义在原型上
+            People1.prototype.say = function () {};
 
-            console.log("people.constructor:", people.constructor);
+            //定义子类
+            //1、实现属性拷贝和赋值
+            function Student1(name, age) {
+                //使用this调用父类构造函数，生成对象
+                People1.call(this, name);
+                //子类属性初始化赋值
+                this.age = age;
+            }
+            //2、实现原型链指向
+            /*
+             * //不能直接指向父类原型，因为还要修改原型constructor指向，会破坏父类的原型链
+             * Student1.prototype = People1.prototype;
+             * */
+            /*
+             * //父类构造函数需要初始化参数，作为原型来讲还需要提供不必要的参数
+             * Student1.prototype = new People1("");
+             * */
+            // 重新生成一个新的原型对象，防止子类父类原型链互相污染
+            Student1.prototype = Object.create(People1.prototype);
+            Student1.prototype.constructor = Student1;
+
+            const people = new People1("ww");
+            console.log("people:", people);
             console.log(
                 "people.constructor.prototype:",
-                people.constructor.prototype,
-                people.constructor.prototype === Function.prototype
+                people.constructor.prototype
             );
-
+            People1.prototype.run2 = function () {};
+            Student1.prototype.run3 = function () {};
+            const student = new Student1("zs", 20);
+            console.log("student:", student);
             console.log(
-                "people:.__proto__",
-                people.__proto__,
-                people.__proto__ === people.constructor.prototype
+                "student.constructor.prototype:",
+                student.constructor.prototype
             );
-
-            console.log("People:", People);
-            console.log("People.constructor:", People.constructor);
-            console.log(
-                "People.constructor.prototype:",
-                People.constructor.prototype
-            );
-            console.log(
-                "People.prototype:",
-                People.prototype,
-                People.prototype === People.constructor.prototype
-            );
-
-            console.log(
-                "People.constructor.prototype.constructor:",
-                People.constructor.prototype.constructor
-            );
-
-            console.log(
-                "People.constructor.prototype.constructor.prototype:",
-                People.constructor.prototype.constructor.prototype ===
-                    Function.prototype
-            );
-            console.log("---------------------------");
         </script>
-        <!--        <script>-->
-        <!--            class Parent {-->
-        <!--                constructor(name) {-->
-        <!--                    this.name = name;-->
-        <!--                }-->
-        <!--            }-->
+        <script>
+            console.log("--方式2-----------------");
+            class People2 {
+                constructor(name) {
+                    this.name = name;
+                }
+                say = function () {};
+            }
+            class Student2 extends People2 {
+                constructor(name, age) {
+                    super(name);
+                    this.age = age;
+                }
+            }
+            const people2 = new People2("ww");
+            console.log("people2:", people2);
+            console.log(
+                "people2.constructor.prototype:",
+                people2.constructor.prototype
+            );
+            People2.prototype.run2 = function () {};
+            Student2.prototype.run3 = function () {};
+            const student2 = new Student2("zs", 20);
+            console.log("student2:", student2);
+            console.log(
+                "student2.constructor.prototype:",
+                student2.constructor.prototype
+            );
+        </script>
+        <script>
+            console.log("----------------------");
+            //Object对象
+            console.log("Object:", Object);
+            console.log("-Object函数属性---");
+            //Object函数原型
+            console.log("Object.prototype:", Object.prototype);
+            //Object函数原型的原型： 值为null
+            console.log(
+                "Object.prototype.__proto__:",
+                Object.prototype.__proto__
+            );
+            console.log("-Object对象属性---");
+            //Object对象-原型
+            console.log("Object.__proto__:", Object.__proto__);
+            //Object对象-原型-原型
+            console.log(
+                "Object.__proto__.__proto__:",
+                Object.__proto__.__proto__
+            );
+            //Object对象-原型-原型 等于 Object.prototype
+            console.log(
+                "Object.__proto__.__proto__:",
+                Object.__proto__.__proto__ === Object.prototype
+            );
+            //Object对象-原型-原型-原型 ： 值为null
+            console.log(
+                "Object.__proto__.__proto__.__proto__:",
+                Object.__proto__.__proto__.__proto__
+            );
 
-        <!--            class Child extends Parent {-->
-        <!--                constructor(name) {-->
-        <!--                    super(name);-->
-        <!--                }-->
-        <!--            }-->
+            console.log("-Object构造函数属性---");
+            //Object对象-构造函数:Function
+            console.log("Object.constructor:", Object.constructor);
 
-        <!--            const child = new Child("zs");-->
-        <!--            console.log("Parent:", Parent);-->
-        <!--            console.log("Parent.prototype:", Parent.prototype);-->
-        <!--            console.log(-->
-        <!--                "Parent.constructor.prototype:",-->
-        <!--                Parent.constructor.prototype-->
-        <!--            );-->
+            console.log("-Function构造函数属性---");
+            //Function函数-原型
+            console.log("Function.prototype:", Function.prototype);
+            //Function函数-原型-原型
+            console.log(
+                "Function.prototype.__proto__:",
+                Function.prototype.__proto__
+            );
+            //Function函数-原型-原型 等于 Object.prototype 等于 Object.__proto__.__proto__
+            console.log(
+                "Function.prototype.__proto__:",
+                Function.prototype.__proto__ === Object.prototype
+            );
+            console.log("-Function对象属性---");
+            //Function对象-原型
+            console.log("Function.__proto__:", Function.__proto__);
+            //Function对象-原型 等于 Function.prototype
+            console.log(
+                "Function.__proto__:",
+                Function.__proto__ === Function.prototype
+            );
 
-        <!--            console.log("Parent.__proto__", Parent.__proto__);-->
+            //Function对象-原型-原型
+            console.log(
+                "Function.__proto__.__proto__:",
+                Function.__proto__.__proto__
+            );
+            //Function对象-原型-原型 等于Function.prototype.__proto__ 等于 Object.prototype 等于 Object.__proto__.__proto__
+            console.log(
+                "Function.__proto__.__proto__:",
+                Function.__proto__.__proto__ === Function.prototype.__proto__
+            );
 
-        <!--            console.log("Child:", Child);-->
-        <!--            console.log("Child.prototype:", Child.prototype);-->
-        <!--            console.log("Child.__proto__:", Child.__proto__);-->
-        <!--            console.log("child.__proto__:", child.__proto__);-->
-        <!--            console.log(-->
-        <!--                "Child.__proto__",-->
-        <!--                Child.__proto__,-->
-        <!--                child.__proto__ === Child.prototype,-->
-        <!--                Child.constructor.prototype === Child.prototype-->
-        <!--            );-->
-        <!--        </script>-->
+            console.log("-Function构造函数属性---");
+            console.log("Function.constructor:", Function.constructor);
+            console.log(
+                "Function.constructor:",
+                Function.constructor.prototype
+            );
+            console.log(
+                "Function.constructor:",
+                Function.constructor.prototype === Function.__proto__
+            );
+        </script>
     </body>
 </html>
+
+<script>
+    console.log("----------------------");
+    //Object对象
+    console.log("Object:", Object);
+    console.log("-Object函数属性---");
+    //Object函数原型
+    console.log("Object.prototype:", Object.prototype);
+    //Object函数原型的原型： 值为null
+    console.log("Object.prototype.__proto__:", Object.prototype.__proto__);
+    console.log("-Object对象属性---");
+    //Object对象-原型
+    console.log("Object.__proto__:", Object.__proto__);
+    //Object对象-原型-原型
+    console.log("Object.__proto__.__proto__:", Object.__proto__.__proto__);
+    //Object对象-原型-原型 等于 Object.prototype
+    console.log(
+        "Object.__proto__.__proto__:",
+        Object.__proto__.__proto__ === Object.prototype
+    );
+    //Object对象-原型-原型-原型 ： 值为null
+    console.log(
+        "Object.__proto__.__proto__.__proto__:",
+        Object.__proto__.__proto__.__proto__
+    );
+
+    console.log("-Object构造函数属性---");
+    //Object对象-构造函数:Function
+    console.log("Object.constructor:", Object.constructor);
+
+    console.log("-Function构造函数属性---");
+    //Function函数-原型
+    console.log("Function.prototype:", Function.prototype);
+    //Function函数-原型-原型
+    console.log("Function.prototype.__proto__:", Function.prototype.__proto__);
+    //Function函数-原型-原型 等于 Object.prototype 等于 Object.__proto__.__proto__
+    console.log(
+        "Function.prototype.__proto__:",
+        Function.prototype.__proto__ === Object.prototype
+    );
+    console.log("-Function对象属性---");
+    //Function对象-原型
+    console.log("Function.__proto__:", Function.__proto__);
+    //Function对象-原型 等于 Function.prototype
+    console.log(
+        "Function.__proto__:",
+        Function.__proto__ === Function.prototype
+    );
+
+    //Function对象-原型-原型
+    console.log("Function.__proto__.__proto__:", Function.__proto__.__proto__);
+    //Function对象-原型-原型 等于Function.prototype.__proto__ 等于 Object.prototype 等于 Object.__proto__.__proto__
+    console.log(
+        "Function.__proto__.__proto__:",
+        Function.__proto__.__proto__ === Function.prototype.__proto__
+    );
+
+    console.log("-Function构造函数属性---");
+    console.log("Function.constructor:", Function.constructor);
+    console.log("Function.constructor:", Function.constructor.prototype);
+    console.log(
+        "Function.constructor:",
+        Function.constructor.prototype === Function.__proto__
+    );
+</script>
