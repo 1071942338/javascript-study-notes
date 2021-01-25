@@ -5,7 +5,7 @@
 - 在前端开发中，可以使⽤路由设置访问路径，并根据路径与组件的映射关系切换组件的显示
 - 这整个过程都是在同 ⼀个⻚⾯中实现的，不涉及⻚⾯间的跳转，这也就是常说的单⻚应⽤（spa）。
 
-![image](https://note.youdao.com/favicon.ico)
+![image](https://github.com/hao-kuai/web-study-notes/blob/main/src/image/react-router.png)
 ## 1、查看源码姿势
 
 ### 1.1 代码仓库
